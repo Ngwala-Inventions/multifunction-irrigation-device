@@ -1,0 +1,629 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="top-navbar">
+    <h1 class="page-title" id="pageTitle">
+        <i class="fas fa-spray-can me-2 text-danger"></i>Pesticide Management
+    </h1>
+    <div class="user-info">
+        <div class="user-avatar">JD</div>
+        <span>John Farmer</span>
+    </div>
+</div>
+
+<div class="content-area" style="padding: 2rem;">
+    <!-- Pesticide Status Banner -->
+    <div class="alert alert-warning border-0 shadow-sm mb-4" style="border-radius: 15px; background: linear-gradient(135deg, #fff3bf, #ffec99);">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h5 class="alert-heading mb-2">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Pesticide Status: 
+                    <span class="badge bg-warning text-dark ms-2">
+                        <i class="fas fa-circle me-1"></i>Monitoring Active
+                    </span>
+                </h5>
+                <p class="mb-0">Next pesticide application recommended in 3 days based on pest levels.</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <button class="btn btn-outline-warning btn-sm me-2">
+                    <i class="fas fa-bug me-1"></i>Pest Report
+                </button>
+                <button class="btn btn-warning btn-sm">
+                    <i class="fas fa-flask me-1"></i>New Application
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pesticide Summary Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-white shadow" style="background: linear-gradient(135deg, #dc2626, #ef4444); border-radius: 15px; min-height: 140px;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="card-subtitle mb-2" style="opacity: 0.85;">Pest Alert Level</h6>
+                            <h3 class="card-title mb-0">Medium</h3>
+                            <small style="opacity: 0.85;">
+                                <i class="fas fa-arrow-up me-1"></i>+8% this week
+                            </small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-bug" style="font-size: 2rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-white shadow" style="background: linear-gradient(135deg, #9333ea, #a855f7); border-radius: 15px; min-height: 140px;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="card-subtitle mb-2" style="opacity: 0.85;">Last Application</h6>
+                            <h3 class="card-title mb-0">12 Days</h3>
+                            <small style="opacity: 0.85;">
+                                <i class="fas fa-calendar me-1"></i>Jul 23, 2025
+                            </small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-history" style="font-size: 2rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-white shadow" style="background: linear-gradient(135deg, #16a34a, #22c55e); border-radius: 15px; min-height: 140px;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="card-subtitle mb-2" style="opacity: 0.85;">Inventory</h6>
+                            <h3 class="card-title mb-0">5 Types</h3>
+                            <small style="opacity: 0.85;">
+                                <i class="fas fa-boxes me-1"></i>3 in use
+                            </small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-prescription-bottle-alt" style="font-size: 2rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-white shadow" style="background: linear-gradient(135deg, #0ea5e9, #3b82f6); border-radius: 15px; min-height: 140px;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="card-subtitle mb-2" style="opacity: 0.85;">Safety Rating</h6>
+                            <h3 class="card-title mb-0">4.8/5</h3>
+                            <small style="opacity: 0.85;">
+                                <i class="fas fa-shield-alt me-1"></i>Low toxicity
+                            </small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-user-shield" style="font-size: 2rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Current Pest Status -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm border-0" style="border-radius: 15px;">
+                <div class="card-header bg-transparent border-0 pt-4">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-bug me-2 text-danger"></i>Pest Monitoring
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="status-items">
+                        <div class="status-item d-flex justify-content-between align-items-center p-3 mb-3 bg-light rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="status-icon me-3">
+                                    <i class="fas fa-leaf text-success"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold">Aphids</div>
+                                    <small class="text-muted">Primary pest</small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bold text-warning">Moderate</div>
+                                <div class="progress mt-1" style="width: 100px; height: 6px;">
+                                    <div class="progress-bar bg-warning" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="status-item d-flex justify-content-between align-items-center p-3 mb-3 bg-light rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="status-icon me-3">
+                                    <i class="fas fa-spider text-danger"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold">Spider Mites</div>
+                                    <small class="text-muted">Secondary pest</small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bold text-success">Low</div>
+                                <div class="progress mt-1" style="width: 100px; height: 6px;">
+                                    <div class="progress-bar bg-success" style="width: 25%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="status-item d-flex justify-content-between align-items-center p-3 mb-3 bg-light rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="status-icon me-3">
+                                    <i class="fas fa-locust text-danger"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold">Whiteflies</div>
+                                    <small class="text-muted">Emerging threat</small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bold text-danger">High</div>
+                                <div class="progress mt-1" style="width: 100px; height: 6px;">
+                                    <div class="progress-bar bg-danger" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="status-item d-flex justify-content-between align-items-center p-3 mb-3 bg-light rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="status-icon me-3">
+                                    <i class="fas fa-chart-line text-info"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold">Trend Analysis</div>
+                                    <small class="text-muted">7-day change</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-warning text-dark">
+                                <i class="fas fa-arrow-up me-1"></i>12% increase
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Actions -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm border-0" style="border-radius: 15px;">
+                <div class="card-header bg-transparent border-0 pt-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-lightbulb me-2 text-warning"></i>Recommended Actions
+                        </h5>
+                        <button class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#newApplicationModal">
+                            <i class="fas fa-plus me-1"></i>New Application
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info border-0 mb-4">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-info-circle me-3 fs-4"></i>
+                            <div>
+                                <strong>System Recommendation:</strong> Apply targeted pesticide within 3 days to control whitefly population.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recommendation-list">
+                        <div class="recommendation-item p-3 mb-3 border rounded">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-prescription-bottle-alt text-primary me-3"></i>
+                                    <div>
+                                        <h6 class="mb-0 fw-bold">Neem Oil Solution</h6>
+                                        <small class="text-muted">Organic pesticide</small>
+                                    </div>
+                                </div>
+                                <span class="badge bg-success">In Stock</span>
+                            </div>
+                            <div class="recommendation-details">
+                                <p class="mb-2">Effective against whiteflies and aphids with minimal environmental impact.</p>
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted">
+                                        <i class="fas fa-clock me-1"></i>Apply early morning
+                                    </small>
+                                    <small class="text-muted">
+                                        <i class="fas fa-flask me-1"></i>2% concentration
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="recommendation-item p-3 mb-3 border rounded">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-prescription-bottle-alt text-danger me-3"></i>
+                                    <div>
+                                        <h6 class="mb-0 fw-bold">Pyrethrin Spray</h6>
+                                        <small class="text-muted">Fast-acting solution</small>
+                                    </div>
+                                </div>
+                                <span class="badge bg-success">In Stock</span>
+                            </div>
+                            <div class="recommendation-details">
+                                <p class="mb-2">Quick knockdown of flying insects. Use with caution around pollinators.</p>
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted">
+                                        <i class="fas fa-clock me-1"></i>Apply at dusk
+                                    </small>
+                                    <small class="text-muted">
+                                        <i class="fas fa-flask me-1"></i>0.5% concentration
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pesticide Application History -->
+    <div class="card shadow-sm border-0 mb-4" style="border-radius: 15px;">
+        <div class="card-header bg-transparent border-0 pt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-history me-2 text-secondary"></i>Application History
+                </h5>
+                <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-download me-1"></i>Export
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-filter me-1"></i>Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th><i class="fas fa-calendar me-2"></i>Date</th>
+                            <th><i class="fas fa-flask me-2"></i>Pesticide</th>
+                            <th><i class="fas fa-ruler-combined me-2"></i>Area</th>
+                            <th><i class="fas fa-tint me-2"></i>Dosage</th>
+                            <th><i class="fas fa-user me-2"></i>Applied By</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="fw-bold">Jul 23, 2025</div>
+                                <small class="text-muted">12 days ago</small>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-prescription-bottle-alt text-primary me-2"></i>
+                                    Neem Oil
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-info">Field A</span>
+                            </td>
+                            <td>
+                                2% solution
+                            </td>
+                            <td>
+                                John Farmer
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="fw-bold">Jul 9, 2025</div>
+                                <small class="text-muted">26 days ago</small>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-prescription-bottle-alt text-warning me-2"></i>
+                                    Spinosad
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-info">Field B</span>
+                            </td>
+                            <td>
+                                0.5 oz/gal
+                            </td>
+                            <td>
+                                John Farmer
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="fw-bold">Jun 25, 2025</div>
+                                <small class="text-muted">40 days ago</small>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-prescription-bottle-alt text-danger me-2"></i>
+                                    Pyrethrin
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-info">All Fields</span>
+                            </td>
+                            <td>
+                                0.25% solution
+                            </td>
+                            <td>
+                                Assistant
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- New Application Modal -->
+<div class="modal fade" id="newApplicationModal" tabindex="-1" aria-labelledby="newApplicationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 15px;">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="newApplicationModalLabel">
+                    <i class="fas fa-spray-can me-2 text-warning"></i>New Pesticide Application
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="pesticideSelect" class="form-label">Pesticide</label>
+                            <select id="pesticideSelect" name="pesticide" class="form-select" required>
+                                <option value="">Select Pesticide</option>
+                                <option value="neem">Neem Oil</option>
+                                <option value="spinosad">Spinosad</option>
+                                <option value="pyrethrin">Pyrethrin</option>
+                                <option value="bt">Bacillus thuringiensis</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="applicationDate" class="form-label">Application Date</label>
+                            <input type="date" id="applicationDate" name="application_date" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="targetArea" class="form-label">Target Area</label>
+                            <select id="targetArea" name="target_area" class="form-select" required>
+                                <option value="">Select Area</option>
+                                <option value="field_a">Field A</option>
+                                <option value="field_b">Field B</option>
+                                <option value="field_c">Field C</option>
+                                <option value="all">All Fields</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="applicationMethod" class="form-label">Application Method</label>
+                            <select id="applicationMethod" name="application_method" class="form-select" required>
+                                <option value="">Select Method</option>
+                                <option value="spray">Spray</option>
+                                <option value="drench">Soil Drench</option>
+                                <option value="systemic">Systemic</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="concentration" class="form-label">Concentration</label>
+                            <div class="input-group">
+                                <input type="number" id="concentration" name="concentration" class="form-control" placeholder="e.g. 2" step="0.1" min="0.1" max="10" required>
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <div class="input-group">
+                                <input type="number" id="quantity" name="quantity" class="form-control" placeholder="e.g. 500" min="1" required>
+                                <span class="input-group-text">ml</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="applicationNotes" class="form-label">Notes</label>
+                        <textarea class="form-control" id="applicationNotes" name="notes" rows="3" placeholder="Application notes, weather conditions, etc."></textarea>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="safetyCheck" name="safety_check" required>
+                        <label class="form-check-label" for="safetyCheck">
+                            I confirm I've reviewed safety precautions for this pesticide
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="newApplicationForm" class="btn btn-warning">
+                    <i class="fas fa-spray-can me-2"></i>Record Application
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Pesticide Modal -->
+<div class="modal fade" id="addPesticideModal" tabindex="-1" aria-labelledby="addPesticideModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-radius: 15px;">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="addPesticideModalLabel">
+                    <i class="fas fa-plus-circle me-2 text-primary"></i>Add New Pesticide
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="pesticideName" class="form-label">Pesticide Name</label>
+                        <input type="text" class="form-control" id="pesticideName" name="pesticide_name" placeholder="e.g. Neem Oil" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pesticideType" class="form-label">Type</label>
+                        <select id="pesticideType" name="pesticide_type" class="form-select" required>
+                            <option value="">Select Type</option>
+                            <option value="organic">Organic</option>
+                            <option value="chemical">Chemical</option>
+                            <option value="biological">Biological</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="initialQuantity" class="form-label">Quantity</label>
+                            <input type="number" id="initialQuantity" name="quantity" class="form-control" placeholder="e.g. 1000" min="1" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="unit" class="form-label">Unit</label>
+                            <select id="unit" name="unit" class="form-select" required>
+                                <option value="ml">Milliliters (ml)</option>
+                                <option value="l">Liters (L)</option>
+                                <option value="oz">Ounces (oz)</option>
+                                <option value="gal">Gallons (gal)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="targetPests" class="form-label">Target Pests</label>
+                        <input type="text" class="form-control" id="targetPests" name="target_pests" placeholder="e.g. Aphids, Whiteflies" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="safetyLevel" class="form-label">Safety Level</label>
+                        <select id="safetyLevel" name="safety_level" class="form-select" required>
+                            <option value="low">Low Risk</option>
+                            <option value="moderate">Moderate Risk</option>
+                            <option value="high">High Risk</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="addPesticideForm" class="btn btn-primary">
+                    <i class="fas fa-save me-2"></i>Add to Inventory
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.pesticide-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px;
+}
+
+.pesticide-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.recommendation-item {
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.recommendation-item:hover {
+    transform: translateX(3px);
+    border-left-color: var(--bs-warning);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.inventory-card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.inventory-card .card-body {
+    padding: 1.5rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0,0,0,0.02);
+}
+
+.badge-organic {
+    background-color: #10b981;
+    color: white;
+}
+
+.badge-chemical {
+    background-color: #ef4444;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .status-items {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .inventory-card {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Pesticide application form validation
+    const applicationForm = document.getElementById('newApplicationForm');
+    if (applicationForm) {
+        applicationForm.addEventListener('submit', function(e) {
+            const safetyCheck = document.getElementById('safetyCheck');
+            if (!safetyCheck.checked) {
+                e.preventDefault();
+                alert('Please confirm you have reviewed the safety precautions before applying pesticides.');
+                safetyCheck.focus();
+            }
+        });
+    }
+    
+    // Auto-refresh pest status every 30 seconds
+    setInterval(function() {
+        // Here you would fetch updated pest status from your backend
+        console.log('Refreshing pest monitoring data...');
+    }, 30000);
+});
+</script>
+
+{% endblock %}

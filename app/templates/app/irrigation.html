@@ -1,0 +1,605 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+       
+
+<div class="top-navbar">
+    <h1 class="page-title" id="pageTitle">
+        <i class="fas fa-tint me-2 text-info"></i>Irrigation Control Panel
+    </h1>
+    <div class="user-info">
+        <div class="user-avatar">JD</div>
+        <span>John Farmer</span>
+    </div>
+</div>
+
+<div class="content-area" style="padding: 2rem;">
+    <!-- Live Status Banner -->
+    <div class="alert alert-info border-0 shadow-sm mb-4" style="border-radius: 15px; background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h5 class="alert-heading mb-2">
+                    <i class="fas fa-broadcast-tower me-2"></i>System Status: 
+                    <span class="badge bg-success ms-2">
+                        <i class="fas fa-circle me-1"></i>All Systems Online
+                    </span>
+                </h5>
+                <p class="mb-0">Device A001 is actively monitoring soil conditions. Next scheduled irrigation in 6 hours.</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <button class="btn btn-outline-primary btn-sm me-2">
+                    <i class="fas fa-sync-alt me-1"></i>Refresh Status
+                </button>
+                <button class="btn btn-primary btn-sm">
+                    <i class="fas fa-cog me-1"></i>Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Statistics Cards -->
+    <div class="row g-3 mb-4">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-white shadow" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 15px; min-height: 140px;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="card-subtitle mb-2" style="opacity: 0.75;">Total Irrigations</h6>
+                            <h3 class="card-title mb-0">24 Times</h3>
+                            <small style="opacity: 0.75;">
+                                <i class="fas fa-arrow-up me-1"></i>+12% this month
+                            </small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check" style="font-size: 2rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-white shadow" style="background: linear-gradient(135deg, #059669, #10b981); border-radius: 15px; min-height: 140px;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="card-subtitle mb-2" style="opacity: 0.75;">Total Volume Used</h6>
+                            <h3 class="card-title mb-0">2,450L</h3>
+                            <small style="opacity: 0.75;">
+                                <i class="fas fa-arrow-down me-1"></i>-5% vs last month
+                            </small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-tint" style="font-size: 2rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-white shadow" style="background: linear-gradient(135deg, #d97706, #f59e0b); border-radius: 15px; min-height: 140px;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="card-subtitle mb-2" style="opacity: 0.75;">Total Cost</h6>
+                            <h3 class="card-title mb-0">TZS 36,750</h3>
+                            <small style="opacity: 0.75;">
+                                <i class="fas fa-equals me-1"></i>Budget on track
+                            </small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-coins" style="font-size: 2rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-white shadow" style="background: linear-gradient(135deg, #374151, #4b5563); border-radius: 15px; min-height: 140px;">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="card-subtitle mb-2" style="opacity: 0.75;">Last Irrigation</h6>
+                            <h3 class="card-title mb-0" style="font-size: 1.5rem;">Aug 2</h3>
+                            <small style="opacity: 0.75;">06:30 AM</small>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-clock" style="font-size: 2rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Current Status & Manual Control -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm border-0" style="border-radius: 15px;">
+                <div class="card-header bg-transparent border-0 pt-4">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-info-circle me-2 text-info"></i>Current Status
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="status-items">
+                        <div class="status-item d-flex justify-content-between align-items-center p-3 mb-3 bg-light rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="status-icon me-3">
+                                    <i class="fas fa-microchip text-primary"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold">Device A001</div>
+                                    <small class="text-muted">Main Controller</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-success">
+                                <i class="fas fa-circle me-1"></i>Online
+                            </span>
+                        </div>
+
+                        <div class="status-item d-flex justify-content-between align-items-center p-3 mb-3 bg-light rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="status-icon me-3">
+                                    <i class="fas fa-cog text-secondary"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold">Operation Mode</div>
+                                    <small class="text-muted">Current setting</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-info">Auto</span>
+                        </div>
+
+                        <div class="status-item d-flex justify-content-between align-items-center p-3 mb-3 bg-light rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="status-icon me-3">
+                                    <i class="fas fa-thermometer-half text-warning"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold">Soil Moisture</div>
+                                    <small class="text-muted">Current level</small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bold text-warning">22%</div>
+                                <div class="progress mt-1" style="width: 80px; height: 6px;">
+                                    <div class="progress-bar bg-warning" style="width: 22%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="status-item d-flex justify-content-between align-items-center p-3 mb-3 bg-light rounded">
+                            <div class="d-flex align-items-center">
+                                <div class="status-icon me-3">
+                                    <i class="fas fa-calendar-alt text-success"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold">Next Scheduled</div>
+                                    <small class="text-muted">Aug 3, 06:00 PM</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-outline-success border border-success text-success">Pending</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Irrigation Schedule -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm border-0" style="border-radius: 15px;">
+                <div class="card-header bg-transparent border-0 pt-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-calendar-week me-2 text-primary"></i>Irrigation Schedule
+                        </h5>
+                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addScheduleModal">
+                            <i class="fas fa-plus me-1"></i>Add Schedule
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="schedule-list">
+                        <div class="schedule-item d-flex justify-content-between align-items-center p-3 mb-3 border rounded">
+                            <div class="schedule-info">
+                                <div class="d-flex align-items-center mb-1">
+                                    <i class="fas fa-calendar-day me-2 text-primary"></i>
+                                    <span class="fw-bold">Monday</span>
+                                </div>
+                                <div class="schedule-details">
+                                    <small class="text-muted me-3">
+                                        <i class="fas fa-clock me-1"></i>06:00 AM
+                                    </small>
+                                    <small class="text-muted">
+                                        <i class="fas fa-hourglass-half me-1"></i>30 mins
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="schedule-actions">
+                                <span class="badge bg-success mb-2">Active</span>
+                                <div class="btn-group btn-group-sm">
+                                    <button class="btn btn-outline-secondary">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="schedule-item d-flex justify-content-between align-items-center p-3 mb-3 border rounded">
+                            <div class="schedule-info">
+                                <div class="d-flex align-items-center mb-1">
+                                    <i class="fas fa-calendar-day me-2 text-primary"></i>
+                                    <span class="fw-bold">Thursday</span>
+                                </div>
+                                <div class="schedule-details">
+                                    <small class="text-muted me-3">
+                                        <i class="fas fa-clock me-1"></i>06:00 PM
+                                    </small>
+                                    <small class="text-muted">
+                                        <i class="fas fa-hourglass-half me-1"></i>45 mins
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="schedule-actions">
+                                <span class="badge bg-success mb-2">Active</span>
+                                <div class="btn-group btn-group-sm">
+                                    <button class="btn btn-outline-secondary">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="fw-bold text-primary">2</div>
+                                <small class="text-muted">Active Schedules</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="fw-bold text-success">75 min</div>
+                                <small class="text-muted">Weekly Duration</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Irrigation Logs -->
+    <div class="card shadow-sm border-0 mb-4" style="border-radius: 15px;">
+        <div class="card-header bg-transparent border-0 pt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-history me-2 text-secondary"></i>Previous Irrigation Logs
+                </h5>
+                <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-download me-1"></i>Export
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-filter me-1"></i>Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th><i class="fas fa-calendar me-2"></i>Date</th>
+                            <th><i class="fas fa-clock me-2"></i>Time Started</th>
+                            <th><i class="fas fa-hourglass-half me-2"></i>Duration</th>
+                            <th><i class="fas fa-tint me-2"></i>Volume Used</th>
+                            <th><i class="fas fa-coins me-2"></i>Cost (TZS)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="fw-bold">Aug 2, 2025</div>
+                                <small class="text-muted">2 days ago</small>
+                            </td>
+                            <td>06:30 AM</td>
+                            <td>
+                                <span class="badge bg-info">30 mins</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-tint text-info me-2"></i>
+                                    120 Liters
+                                </div>
+                            </td>
+                            <td>
+                                <span class="fw-bold text-success">1,800</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="fw-bold">Jul 31, 2025</div>
+                                <small class="text-muted">4 days ago</small>
+                            </td>
+                            <td>06:00 PM</td>
+                            <td>
+                                <span class="badge bg-warning">45 mins</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-tint text-info me-2"></i>
+                                    180 Liters
+                                </div>
+                            </td>
+                            <td>
+                                <span class="fw-bold text-success">2,700</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="fw-bold">Jul 29, 2025</div>
+                                <small class="text-muted">6 days ago</small>
+                            </td>
+                            <td>05:30 AM</td>
+                            <td>
+                                <span class="badge bg-success">20 mins</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-tint text-info me-2"></i>
+                                    80 Liters
+                                </div>
+                            </td>
+                            <td>
+                                <span class="fw-bold text-success">1,200</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Schedule Modal -->
+<div class="modal fade" id="addScheduleModal" tabindex="-1" aria-labelledby="addScheduleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 15px;">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="addScheduleModalLabel">
+                    <i class="fas fa-plus-circle me-2 text-primary"></i>Add New Irrigation Schedule
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="scheduleName" class="form-label">Schedule Name</label>
+                            <input type="text" class="form-control" id="scheduleName" name="schedule_name" placeholder="e.g. Morning Watering" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="day" class="form-label">Day of Week</label>
+                            <select id="day" name="day_of_week" class="form-select" required>
+                                <option value="">Select Day</option>
+                                <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="time" class="form-label">Start Time</label>
+                            <input type="time" id="time" name="start_time" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="duration" class="form-label">Duration (minutes)</label>
+                            <input type="number" id="duration" name="duration" class="form-control" placeholder="e.g. 30" min="1" max="240" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="device" class="form-label">Device</label>
+                            <select id="device" name="device_id" class="form-select" required>
+                                <option value="">Select Device</option>
+                                <option value="A001">Device A001 - Main Controller</option>
+                                <option value="B342">Device B342 - Secondary</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="priority" class="form-label">Priority</label>
+                            <select id="priority" name="priority" class="form-select" required>
+                                <option value="normal">Normal</option>
+                                <option value="high">High</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">Notes (Optional)</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="2" placeholder="Additional notes about this schedule..."></textarea>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="isActive" name="is_active" checked>
+                        <label class="form-check-label" for="isActive">
+                            Activate schedule immediately
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="addScheduleForm" class="btn btn-primary">
+                    <i class="fas fa-save me-2"></i>Save Schedule
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.stat-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.status-item, .schedule-item {
+    transition: transform 0.2s ease;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+.status-item:hover, .schedule-item:hover {
+    transform: translateX(3px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+.status-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+}
+
+.progress {
+    border-radius: 10px;
+}
+
+.progress-bar {
+    border-radius: 10px;
+}
+
+.alert-sm {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0,0,0,0.02);
+}
+
+.btn-group-sm > .btn {
+    border-radius: 6px;
+}
+
+.modal-content {
+    border: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+    .stat-card .card-body {
+        padding: 1.5rem !important;
+    }
+    
+    .schedule-item, .status-item {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    
+    .schedule-actions, .status-actions {
+        margin-top: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Manual irrigation controls
+    const startBtn = document.getElementById('startIrrigation');
+    const stopBtn = document.getElementById('stopIrrigation');
+    
+    startBtn.addEventListener('click', function() {
+        // Add confirmation dialog
+        if (confirm('Are you sure you want to start manual irrigation?')) {
+            // Here you would make an AJAX call to your Django backend
+            console.log('Starting irrigation...');
+            this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Starting...';
+            this.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check me-2"></i>Running';
+                this.classList.remove('btn-success');
+                this.classList.add('btn-info');
+            }, 2000);
+        }
+    });
+    
+    stopBtn.addEventListener('click', function() {
+        if (confirm('Are you sure you want to stop irrigation?')) {
+            console.log('Stopping irrigation...');
+            this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Stopping...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-stop me-2"></i>Stop Irrigation';
+                this.disabled = false;
+                startBtn.innerHTML = '<i class="fas fa-play me-2"></i>Start Irrigation';
+                startBtn.classList.remove('btn-info');
+                startBtn.classList.add('btn-success');
+                startBtn.disabled = false;
+            }, 2000);
+        }
+    });
+    
+    // Auto-refresh status every 30 seconds
+    setInterval(function() {
+        // Here you would fetch updated status from your backend
+        console.log('Refreshing status...');
+    }, 30000);
+});
+</script>
+
+{% endblock %}
